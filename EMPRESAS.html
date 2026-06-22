@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empresas | Santiago Lozano</title>
+    
+    <!-- CSS Maestro Unificado -->
+    <link rel="stylesheet" href="stilos.css"> 
+    <script src="https://kit.fontawesome.com/149be14211.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="IMG/ico.ico">
+</head>
+<body>
+
+    <!-- ================= NAVEGACIÓN PREMIUM ================= -->
+    <header class="cabecera-principal">
+        <div class="logo-contenedor">
+            <img src="IMG/logo de s.jpg" alt="Logo" class="logo-img">
+        </div>
+        <nav class="navbar">
+            <ul>
+                <li><a href="HOME.html">Inicio</a></li>
+                <li><a href="SERVICIOS.html">Servicios</a></li>
+                <li><a href="EMPRESAS.html" class="activo">Empresa</a></li>
+                <li><a href="TESTIMONIOS.html">Testimonios</a></li>
+                <li><a href="CTA.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ================= TÍTULO SECCIÓN ================= -->
+    <main class="seccion-empresas">
+        <h1 class="titulo-pagina oculto-scroll">Empresas que <span class="resaltado-neon">gestiono</span></h1>
+
+        <!-- ================= CARRUSEL PREMIUM ================= -->
+<!-- ================= CARRUSEL PREMIUM CORREGIDO ================= -->
+<div class="contenedor-carrusel" id="test-visible">
+    <!-- El carrusel contiene todas las imágenes -->
+    <div class="carousel" id="carousel">
+        
+        <!-- México -->
+        <div class="carousel-item">
+            <img src="IMG/mex.jpg" alt="México" loading="lazy">
+            <div class="carousel-text"><h3>México</h3><p>Estrategias digitales adaptadas al mercado mexicano con enfoque en resultados a largo plazo.</p></div>
+        </div>
+
+        <!-- USA -->
+        <div class="carousel-item">
+            <img src="IMG/usa.jpg" alt="USA" loading="lazy">
+            <div class="carousel-text"><h3>USA</h3><p>Campañas de alto impacto para destacar en mercados altamente competitivos.</p></div>
+        </div>
+
+        <!-- Colombia -->
+        <div class="carousel-item">
+            <img src="IMG/col.jpg" alt="Colombia" loading="lazy">
+            <div class="carousel-text"><h3>Colombia</h3><p>Soluciones digitales de vanguardia para aumentar el engagement y visibilidad local.</p></div>
+        </div>
+
+        <!-- Green Jungle Fest -->
+        <div class="carousel-item">
+            <img src="IMG/green.jpg" alt="Green Jungle Fest" loading="lazy">
+            <div class="carousel-text"><h3>Green Jungle Fest</h3><p>Marketing integral para experiencias musicales y culturales memorables.</p></div>
+        </div>
+
+        <!-- España -->
+        <div class="carousel-item">
+            <img src="IMG/esp.jpg" alt="España" loading="lazy">
+            <div class="carousel-text"><h3>España</h3><p>Presencia online optimizada con campañas digitales eficientes y orgánicas.</p></div>
+        </div>
+        
+    </div>
+    
+    <!-- Botones de control (Dentro del contenedor para posicionarlos fácilmente) -->
+    <button class="nav-btn prev" onclick="moveSlide(-1)">&#10094;</button>
+    <button class="nav-btn next" onclick="moveSlide(1)">&#10095;</button>
+</div>
+    </main>
+
+   <!-- ================= FOOTER PREMIUM ================= -->
+    <footer class="pie-de-pagina ">
+        <div class="container-footer">
+            <div class="profile-footer">
+                <p class="footer-bio">Especialista global en marketing estratégico y ciberseguridad corporativa.</p>
+                
+            </div>
+
+            <div class="columna-links">
+                <h3>Información</h3>
+                <ul>
+                    <li><a href="HOME.html">Nosotros</a></li>
+                    <li><a href="EMPRESAS.html">Empresa</a></li>
+                    <li><a href="CTA.html">Contacto</a></li>
+                </ul>
+            </div>
+
+            <div class="columna-links">
+                <h3>Navegación</h3>
+                <ul>
+                    <li><a href="HOME.html">Inicio</a></li>
+                    <li><a href="SERVICIOS.html">Servicios</a></li>
+                    <li><a href="TESTIMONIOS.html">Testimonios</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>&copy; 2026 Santiago Lozano. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+  
+
+   <script>
+    let index = 0;
+    const carousel = document.getElementById('carousel');
+    const items = document.querySelectorAll('.carousel-item');
+    const totalItems = items.length;
+
+    function updateCarousel() {
+        // Mueve el carrusel usando porcentaje
+        carousel.style.transform = `translateX(-${index * 100}%)`;
+    }
+
+    function moveSlide(step) {
+        index = (index + step + totalItems) % totalItems;
+        updateCarousel();
+    }
+
+    // Auto-slide automático cada 4 segundos
+    setInterval(() => moveSlide(1), 4000);
+</script>
+</body>
+</html>

@@ -1,0 +1,1357 @@
+/* =========================================
+   0. PALETA DE COLORES (CYBER NEÓN)
+   ========================================= */
+:root {
+ --fondo-principal: #000000; /* Negro puro absoluto */
+  --fondo-secundario: #0A0A0A; /* Casi negro, solo para diferenciar las tarjetas */
+  --texto-principal: #FFFFFF; /* Blanco puro para que resalte al máximo */
+  --texto-secundario: #888888; /* Gris neutro para textos largos */
+  --acento-primario: #39FF14; /* Verde neón súper intenso */
+  --acento-hover: #2ECC10; /* Verde más profundo al pasar el mouse */
+  --borde-sutil: rgba(255, 255, 255, 0.15); /* Bordes grises más marcados para dar estructura */
+}
+
+/* =========================================
+   1. RESET Y ESTILOS GLOBALES
+   ========================================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth; /* Desplazamiento suave global */
+}
+
+body {
+  background-color: var(--fondo-principal);
+  color: var(--texto-principal);
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: var(--texto-principal);
+}
+
+/* =========================================
+   2. HEADER Y NAVEGACIÓN
+   ========================================= */
+.cabecera-principal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  max-width: 1200px;
+  margin: 2% auto 0 auto;
+  flex-wrap: wrap;
+  gap: 20px;
+  transition: all 0.4s ease;
+}
+
+.logo-contenedor {
+  width: 150px;
+  height: 150px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.navbar {
+  background-color: var(--fondo-secundario);
+  padding: 10px 20px;
+  border-radius: 8px;
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.navbar ul {
+  display: flex;
+  list-style-type: none;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.navbar a {
+  font-family: 'Cambria', serif;
+  font-size: 18px;
+  text-transform: uppercase;
+  transition: color 0.3s ease-in-out;
+  position: relative;
+}
+
+.navbar a:hover {
+  color: var(--acento-primario);
+}
+
+.navbar a::after {
+  content: "";
+  display: block;
+  border-bottom: 3px solid var(--texto-principal);
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s ease;
+  margin-top: 5px;
+}
+
+.navbar a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+  border-color: var(--acento-primario);
+}
+
+/* =========================================
+   3. SECCIÓN 1: BIENVENIDA (HERO)
+   ========================================= */
+.seccion-hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 90%;
+  max-width: 1200px;
+  margin: 5% auto;
+  gap: 40px;
+}
+
+.hero-contenido {
+  flex: 1;
+  min-width: 300px;
+}
+
+.titulo-principal {
+  font-size: 4rem;
+  margin-bottom: 20px;
+  color: var(--texto-principal);
+}
+
+.hero-texto {
+  font-size: 1.5rem;
+  line-height: 1.6;
+  color: var(--texto-secundario);
+}
+
+.hero-cta-box {
+  flex: 1;
+  min-width: 300px;
+  background-image: url("IMG/FONDO.jpeg");
+  background-size: cover;
+  background-position: center;
+  padding: 50px;
+  border-radius: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  min-height: 400px;
+}
+
+.cta-texto {
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  background-color: rgba(18, 18, 18, 0.85); /* Usa el tono del fondo principal transparente */
+  color: var(--texto-principal);
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+/* =========================================
+   4. BOTONES ANIMADOS
+   ========================================= */
+.animated-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 16px 36px;
+  border: 4px solid transparent;
+  font-size: 16px;
+  background-color: var(--fondo-secundario); 
+  border-radius: 100px;
+  font-weight: 600;
+  color: var(--acento-primario);
+  box-shadow: 0 0 0 2px var(--fondo-secundario);
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  text-decoration: none;
+}
+
+.animated-button svg {
+  position: absolute;
+  width: 24px;
+  fill: var(--acento-primario);
+  z-index: 9;
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.animated-button .arr-1 { right: 16px; }
+.animated-button .arr-2 { left: -25%; }
+
+.animated-button .circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  background-color: var(--acento-hover);
+  border-radius: 50%;
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.animated-button .tex {
+  position: relative;
+  z-index: 1;
+  transform: translateX(-12px);
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.animated-button:hover {
+  box-shadow: 0 0 0 12px transparent;
+  color: var(--fondo-principal);
+  border-radius: 12px;
+}
+
+.animated-button:hover .arr-1 { right: -25%; }
+.animated-button:hover .arr-2 { left: 16px; }
+.animated-button:hover .tex { transform: translateX(12px); }
+.animated-button:hover svg { fill: var(--fondo-principal); }
+.animated-button:active { scale: 0.95; box-shadow: 0 0 0 4px var(--acento-hover); }
+.animated-button:hover .circle { width: 220px; height: 220px; opacity: 1; }
+
+/* =========================================
+   5. PORTAFOLIO Y SOBRE MÍ
+   ========================================= */
+.seccion-portafolio-img {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.foto-perfil {
+  width: 100%;
+  max-width: 900px;
+  height: auto;
+  border-radius: 10px;
+}
+
+.seccion-sobre-mi {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  width: 90%;
+  max-width: 1200px;
+  margin: 5% auto;
+  gap: 30px;
+}
+
+.contenido-presentacion {
+  flex: 1;
+  min-width: 300px;
+  background-image: linear-gradient(rgba(30, 30, 30, 0.7), rgba(30, 30, 30, 0.7)), url("IMG/logo so.jpg");
+  background-size: cover;
+  padding: 40px;
+  border-radius: 15px;
+}
+
+.titulo-seccion {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  color: var(--texto-principal);
+}
+
+.titulo-seccion.central {
+  text-align: center;
+  width: 100%;
+  font-size: 3rem;
+  margin-bottom: 40px;
+}
+
+.descripcion-presentacion {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: var(--texto-secundario);
+}
+
+.contenedor-visual-pc {
+ flex: 1;
+  width: 100%;
+  min-width: 280px; /* Permite que se encoja bien en celulares */
+  max-width: 600px; /* Evita que sea gigantesco en PC */
+  aspect-ratio: 16 / 10; 
+  background-image: url("IMG/pc.jpg"); 
+  background-size: 100% 100%; /* Forzamos a que el PC ocupe exactamente la caja */
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative; 
+  margin: 0 auto; /* Lo centra en el celular */
+  
+  
+}
+
+.decoracion-visual {
+ background-image: url("IMG/FOT.jpg"); 
+  background-size: cover;
+  background-position: center ;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 77%;   
+  height: 75%;
+  transform: translate(-50%, -56%);
+  border-radius: 4px; 
+  z-index: 2; /* Nos aseguramos de que quede por encima del PC */
+}
+
+/* =========================================
+   6. PLATAFORMAS (GRID)
+   ========================================= */
+.seccion-plataformas {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.titulo-plataformas h2 {
+  font-size: 2rem;
+  margin-bottom: 40px;
+}
+
+.lista-logos {
+ list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 25px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.lista-logos li {
+  background: rgba(255, 255, 255, 0.03); /* Fondo gris súper sutil */
+  border: 1px solid rgba(255, 255, 255, 0.05); /* Borde casi invisible */
+  border-radius: 15px;
+  padding: 25px 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.4s ease;
+  backdrop-filter: blur(5px);
+}
+.lista-logos li:hover {
+  border-color: var(--acento-primario); /* Se enciende el borde neón */
+  box-shadow: 0 5px 20px rgba(186, 255, 41, 0.15); /* Brillo debajo de la caja */
+  transform: translateY(-5px); /* Se levanta un poco */
+  background: rgba(255, 255, 255, 0.08); /* Se aclara sutilmente */
+}
+.lista-logos img {
+  height: 55px;
+  width: auto;
+  object-fit: contain;
+  filter: grayscale(100%) opacity(0.4);
+  transition: all 0.4s ease;
+}
+.lista-logos li:hover img {
+  filter: grayscale(0%) opacity(1);
+  transform: scale(1.1);
+}
+.lista-logos img {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+  filter: grayscale(80%) opacity(0.7); /* Logos sutiles en modo oscuro */
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.lista-logos img:hover {
+  transform: scale(1.15);
+  filter: grayscale(0%) opacity(1); /* Toman color original al pasar el mouse */
+}
+
+/* =========================================
+   7. SERVICIOS (TARJETAS 3D Y NEÓN)
+   ========================================= */
+.seccion-servicios {
+  width: 90%;
+  max-width: 1200px;
+  margin: 5% auto;
+}
+
+.contenedor-habilidades {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.tarjeta-habilidad {
+  flex: 1;
+  min-width: 300px;
+  background-image: linear-gradient(rgba(30, 30, 30, 0.8), rgba(30, 30, 30, 0.8)), url("IMG/tabla1.jpg");
+  background-size: cover;
+  padding: 40px 30px;
+  border-radius: 15px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border 0.4s ease;
+  border: 1px solid var(--borde-sutil);
+}
+
+.tarjeta-habilidad:hover {
+  transform: translateY(-15px);
+  box-shadow: 0 15px 30px rgba(186, 255, 41, 0.15);
+  border: 1px solid rgba(186, 255, 41, 0.5);
+  background-image: linear-gradient(rgba(18, 18, 18, 0.4), rgba(18, 18, 18, 0.4)), url("IMG/tabla1.jpg");
+}
+
+.titulo-habilidad {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  color: var(--texto-principal);
+}
+
+.texto-habilidad {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--texto-secundario);
+}
+
+.imagen-central-celular {
+  flex: 1;
+  min-width: 250px;
+  background-image: url("IMG/celu.jpg"); /* Tu imagen del marco del celular */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 400px;
+  
+  filter: drop-shadow(0px 0px 30px rgba(57, 255, 20, 0.15));
+  
+  /* Para que flote un poco cuando pasen el mouse */
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+.imagen-central-celular:hover {
+  transform: translateY(-10px);
+  filter: drop-shadow(0px 10px 40px rgba(57, 255, 20, 0.3)); /* El brillo se hace más fuerte */
+}
+
+.foto-celular {
+
+/* Aquí pondrás el nombre de tu nueva imagen */
+  background-image: url("IMG/green.jpg"); 
+  background-size: cover;
+  background-position: center;
+  
+  /* Posicionamiento absoluto para forzarla dentro del marco */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  
+  /* * OJO AQUÍ: Estos porcentajes son un aproximado. 
+   * Juega con el width (ancho) y el height (alto) hasta que 
+   * la foto encaje perfecto en el marco negro de tu celular específico.
+   */
+  width: 55%;   
+  height: 58%;  
+  
+  /* Esto la centra matemáticamente */
+  transform: translate(-50%, -50%); 
+  
+  border-radius: 12px; /* Bordes más redondeados porque es un celular */
+  z-index: 2;
+}
+/* =========================================
+   8. FOOTER PREMIUM Y REDES SOCIALES
+   ========================================= */
+.pie-de-pagina {
+  margin-top: 100px;
+  background-color: var(--fondo-secundario); /* Usamos el gris muy oscuro para separarlo del fondo negro */
+  border-top: 1px solid var(--borde-sutil);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Brillo neón en el borde superior del footer */
+.pie-de-pagina::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--acento-primario), transparent);
+  box-shadow: 0 0 20px var(--acento-primario);
+}
+
+/* ================= CTA FINAL ================= */
+.footer-cta-final {
+  text-align: center;
+  padding: 80px 20px;
+  background: radial-gradient(circle at center, rgba(57, 255, 20, 0.05) 0%, transparent 60%);
+  border-bottom: 1px solid var(--borde-sutil);
+}
+
+.footer-cta-final h2 {
+  font-size: 2.5rem;
+  color: var(--texto-principal);
+  margin-bottom: 15px;
+}
+
+.footer-cta-final p {
+  color: var(--texto-secundario);
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ================= CONTENIDO FOOTER ================= */
+.container-footer {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 20px;
+}
+
+.profile-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.logo-footer {
+  width: 180px;
+  border-radius: 8px;
+}
+
+.footer-bio {
+  color: var(--texto-secundario);
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 80%;
+}
+
+.redes-footer {
+  display: flex;
+  gap: 15px;
+}
+
+.social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  background-color: var(--fondo-principal);
+  border: 1px solid var(--borde-sutil);
+  border-radius: 50%;
+  transition: all 0.4s ease;
+}
+
+.social-icon img {
+  width: 20px;
+  height: 40px;
+  filter: invert(1); /* Pone los logos en blanco si son negros */
+  transition: all 0.4s ease;
+}
+
+.social-icon:hover {
+  transform: translateY(-5px) scale(1.1);
+  border-color: var(--acento-primario);
+  box-shadow: 0 0 15px rgba(57, 255, 20, 0.4);
+}
+
+/* Si tu paleta OLED usa verde, asegúrate de que el rgba de la línea de arriba y abajo haga match */
+.social-icon:hover img {
+  filter: drop-shadow(0 0 5px var(--acento-primario));
+}
+
+.columna-links h3 {
+  font-size: 1.2rem;
+  color: var(--texto-principal);
+  margin-bottom: 25px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.columna-links ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.columna-links a {
+  color: var(--texto-secundario);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.columna-links a:hover {
+  color: var(--acento-primario);
+  transform: translateX(5px); /* Pequeño desplazamiento hacia la derecha al pasar el mouse */
+}
+
+/* ================= COPYRIGHT ================= */
+.copyright {
+  text-align: center;
+  padding: 25px 20px;
+  background-color: var(--fondo-principal);
+  color: var(--texto-secundario);
+  font-size: 0.9rem;
+  border-top: 1px solid var(--borde-sutil);
+}
+
+/* ================= RESPONSIVO FOOTER ================= */
+@media (max-width: 900px) {
+  .container-footer {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer-cta-final h2 {
+    font-size: 1.8rem;
+  }
+  .container-footer {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .profile-footer {
+    align-items: center;
+  }
+  .footer-bio {
+    max-width: 100%;
+  }
+  .columna-links a:hover {
+    transform: translateY(-3px); /* En celulares se levanta en vez de ir a la derecha */
+  }
+}
+
+/* =========================================
+   9. BOTÓN WHATSAPP FLOTANTE
+   ========================================= */
+.boton-flotante-wsp {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  background-color: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease;
+  z-index: 1000;
+}
+
+.boton-flotante-wsp:hover {
+  transform: scale(1.15);
+}
+
+.boton-flotante-wsp img {
+  width: 35px;
+  height: 35px;
+}
+
+/* =========================================
+   10. MEDIA QUERIES (PARA CELULARES Y TABLETS)
+   ========================================= */
+@media (max-width: 768px) {
+  .titulo-principal { font-size: 2.5rem; text-align: center; }
+  .hero-texto { text-align: center; }
+  .cabecera-principal { justify-content: center; }
+  .navbar ul { flex-direction: column; align-items: center; }
+  .seccion-hero, .seccion-sobre-mi { flex-direction: column; }
+  .contenedor-habilidades { flex-direction: column; }
+  .imagen-central-celular { order: -1; margin-bottom: 20px; }
+  .links-footer { flex-direction: column; align-items: flex-start; }
+}
+
+/* =========================================
+   11. EFECTOS DINÁMICOS Y ANIMACIONES
+   ========================================= */
+.oculto-scroll {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  will-change: opacity, transform;
+}
+
+.mostrar-scroll {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.cabecera-fija {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 10px 5%;
+  background-color: rgba(18, 18, 18, 0.95);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
+  z-index: 2000;
+  transition: all 0.4s ease;
+  backdrop-filter: blur(5px);
+}
+
+body.menu-fijado {
+  padding-top: 150px; 
+}
+
+/* =========================================
+   12. BARRA DE PROGRESO DE SCROLL
+   ========================================= */
+.contenedor-progreso {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: transparent;
+  z-index: 9999; 
+}
+
+.barra-progreso {
+  height: 100%;
+  background: var(--acento-primario); 
+  width: 0%; 
+  box-shadow: 0 0 10px var(--acento-primario); 
+}
+
+::-webkit-scrollbar {
+  width: 8px; /* Más delgada y estilizada que la predeterminada */
+}
+
+::-webkit-scrollbar-track {
+  background: var(--fondo-principal); /* Se camufla con tu fondo OLED */
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--acento-primario); /* Tu color verde neón */
+  border-radius: 10px; /* Bordes suaves */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--acento-hover); /* Brilla más cuando le pasas el mouse */
+}
+
+/* ==========================================================
+   ESTILOS PÁGINA CONTACTO / CTA (Integrados a tu diseño OLED)
+   ========================================================== */
+
+/* 1. SECCIÓN HERO DE CONTACTO */
+.seccion-cta-hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh; /* Ocupa gran parte de la pantalla */
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.cta-contenido {
+  max-width: 900px;
+  background: radial-gradient(circle at center, rgba(186, 255, 41, 0.03) 0%, transparent 70%);
+  padding: 80px 40px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  transition: transform 0.6s ease;
+}
+
+.titulo-contacto {
+  font-size: 3.5rem;
+  color: var(--texto-principal);
+  line-height: 1.1;
+  margin-bottom: 25px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.resaltado-neon {
+  color: var(--acento-primario);
+  text-shadow: 0 0 20px rgba(186, 255, 41, 0.3);
+  display: inline-block;
+}
+
+.subtitulo-contacto {
+  font-size: 1.3rem;
+  color: var(--texto-secundario);
+  margin-bottom: 50px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+/* 2. BOTÓN ANIMADO (Ya lo tienes, pero asegúrate que tenga estas clases) */
+.animated-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px 40px;
+  background-color: var(--acento-primario);
+  color: var(--fondo-principal);
+  border-radius: 50px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.animated-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px var(--acento-primario);
+}
+
+/* 3. CLASES PARA LA ANIMACIÓN DE ENTRADA (Scroll Reveal) */
+.oculto-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+.mostrar-scroll {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 4. RESPONSIVIDAD PARA MÓVILES */
+@media (max-width: 768px) {
+  .titulo-contacto {
+    font-size: 2.2rem;
+  }
+  .cta-contenido {
+    padding: 40px 20px;
+  }
+  .subtitulo-contacto {
+    font-size: 1.1rem;
+  }
+}
+
+/* =========================================
+   ESTILOS SECCIÓN EMPRESAS Y CARRUSEL
+   ========================================= */
+.seccion-empresas { 
+  padding: 100px 20px; 
+  text-align: center; 
+}
+
+.titulo-pagina { 
+  font-size: 3rem; 
+  margin-bottom: 50px; 
+  text-transform: uppercase; 
+  color: var(--texto-principal); 
+}
+
+/* Contenedor principal unificado */
+.contenedor-carrusel { 
+  max-width: 800px; 
+  margin: 0 auto; 
+  overflow: hidden; 
+  border-radius: 20px;
+  border: 1px solid rgba(186, 255, 41, 0.2);
+  position: relative; 
+  background: #000;
+  min-height: 450px; /* Garantiza que siempre tenga altura */
+}
+
+/* Lógica del Carrusel unificada */
+.carousel { 
+  display: flex; 
+  transition: transform 0.5s ease-in-out; 
+  width: 100%;
+  height: 100%;
+}
+
+.carousel-item { 
+  min-width: 100%; 
+  background: #111; 
+  box-sizing: border-box;
+}
+
+.carousel-item img { 
+  width: 100%; 
+  height: 350px; 
+  object-fit: cover; 
+}
+
+.carousel-text { 
+  padding: 20px; 
+  color: var(--texto-secundario); 
+}
+
+/* Botones de navegación */
+.nav-btn {
+  position: absolute;
+  top: 40%; /* Un poco más arriba para que quede sobre la foto y no el texto */
+  transform: translateY(-50%);
+  background: var(--acento-primario);
+  color: #000;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 20px;
+  border-radius: 50%;
+  z-index: 10;
+  transition: all 0.3s;
+}
+
+.nav-btn:hover { 
+  background: #fff; 
+  box-shadow: 0 0 15px var(--acento-primario); 
+}
+
+.prev { left: 15px; }
+.next { right: 15px; }
+
+/* Animación (Solo para elementos que quieres que aparezcan al hacer scroll) */
+.oculto-scroll { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
+.mostrar-scroll { opacity: 1; transform: translateY(0); }
+
+
+/* =========================================
+   ESTILOS FOOTER PREMIUM
+   ========================================= */
+.pie-de-pagina {
+  margin-top: 100px;
+  background-color: #050505; 
+  border-top: 1px solid #222;
+  position: relative;
+  padding-top: 50px;
+}
+
+.footer-cta-final { text-align: center; padding: 60px 20px; }
+.footer-cta-final h2 { color: #fff; font-size: 2rem; margin-bottom: 20px; }
+
+.container-footer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.logo-footer { width: 150px; margin-bottom: 15px; }
+.social-icon { display: inline-block; width: 40px; margin-right: 10px; }
+.social-icon img { width: 100%; filter: invert(1); transition: transform 0.3s; }
+.social-icon:hover img { transform: scale(1.1); filter: drop-shadow(0 0 5px var(--acento-primario)); }
+
+.columna-links h3 { color: var(--acento-primario); margin-bottom: 15px; }
+.columna-links ul { list-style: none; padding: 0; }
+.columna-links a { color: #ccc; text-decoration: none; transition: 0.3s; display: inline-block; margin-bottom: 8px;}
+.columna-links a:hover { color: var(--acento-primario); transform: translateX(5px); }
+
+.copyright { text-align: center; padding: 20px; font-size: 0.8rem; color: #666; border-top: 1px solid #222; margin-top: 20px;}
+
+
+
+
+
+.seccion-empresas { 
+  padding: 100px 20px; 
+  text-align: center; 
+}
+
+.titulo-pagina { 
+  font-size: 3rem; 
+  margin-bottom: 50px; 
+  text-transform: uppercase; 
+  color: var(--texto-principal); 
+}
+
+/* Contenedor principal unificado */
+.contenedor-carrusel { 
+  max-width: 800px; 
+  margin: 0 auto; 
+  overflow: hidden; 
+  border-radius: 20px;
+  border: 1px solid rgba(186, 255, 41, 0.2);
+  position: relative; 
+  background: #000;
+  min-height: 450px; /* Garantiza que siempre tenga altura */
+}
+
+/* Lógica del Carrusel unificada */
+.carousel { 
+  display: flex; 
+  transition: transform 0.5s ease-in-out; 
+  width: 100%;
+  height: 100%;
+}
+
+.carousel-item { 
+  min-width: 100%; 
+  background: #111; 
+  box-sizing: border-box;
+}
+
+.carousel-item img { 
+  width: 100%; 
+  height: 350px; 
+  object-fit: cover; 
+}
+
+.carousel-text { 
+  padding: 20px; 
+  color: var(--texto-secundario); 
+}
+
+/* Botones de navegación */
+.nav-btn {
+  position: absolute;
+  top: 40%; /* Un poco más arriba para que quede sobre la foto y no el texto */
+  transform: translateY(-50%);
+  background: var(--acento-primario);
+  color: #000;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 20px;
+  border-radius: 50%;
+  z-index: 10;
+  transition: all 0.3s;
+}
+
+.nav-btn:hover { 
+  background: #fff; 
+  box-shadow: 0 0 15px var(--acento-primario); 
+}
+
+.prev { left: 15px; }
+.next { right: 15px; }
+
+/* Animación (Solo para elementos que quieres que aparezcan al hacer scroll) */
+.oculto-scroll { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
+.mostrar-scroll { opacity: 1; transform: translateY(0); }
+
+
+/* =========================================
+   ESTILOS FOOTER PREMIUM
+   ========================================= */
+.pie-de-pagina {
+  margin-top: 100px;
+  background-color: #050505; 
+  border-top: 1px solid #222;
+  position: relative;
+  padding-top: 50px;
+}
+
+.footer-cta-final { text-align: center; padding: 60px 20px; }
+.footer-cta-final h2 { color: #fff; font-size: 2rem; margin-bottom: 20px; }
+
+.container-footer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.logo-footer { width: 150px; margin-bottom: 15px; }
+.social-icon { display: inline-block; width: 40px; margin-right: 10px; }
+.social-icon img { width: 100%; filter: invert(1); transition: transform 0.3s; }
+.social-icon:hover img { transform: scale(1.1); filter: drop-shadow(0 0 5px var(--acento-primario)); }
+
+.columna-links h3 { color: var(--acento-primario); margin-bottom: 15px; }
+.columna-links ul { list-style: none; padding: 0; }
+.columna-links a { color: #ccc; text-decoration: none; transition: 0.3s; display: inline-block; margin-bottom: 8px;}
+.columna-links a:hover { color: var(--acento-primario); transform: translateX(5px); }
+
+.copyright { text-align: center; padding: 20px; font-size: 0.8rem; color: #666; border-top: 1px solid #222; margin-top: 20px;}
+
+/* =========================================
+   fin pagina empresa
+   ========================================= */
+
+   /* =========================================
+   ESTILOS PÁGINA SERVICIOS
+   ========================================= */
+.seccion-hero-servicios {
+  text-align: center;
+  padding: 120px 20px 60px;
+}
+
+.contenedor-servicios {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px 80px;
+}
+
+.tech-services {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 80px;
+}
+
+.titulo-seccion-tech {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 50px;
+  color: var(--texto-principal);
+}
+
+/* El sistema de cuadrícula (Grid) */
+.grid-servicios {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+}
+
+/* Tarjetas de Servicio Premium */
+.card-servicio {
+  background: #0a0a0a;
+  border: 1px solid #1a1a1a;
+  border-radius: 16px;
+  padding: 40px 30px;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Efecto de brillo neón sutil en las tarjetas de tecnología */
+.tech-card {
+  background: linear-gradient(145deg, #0a0a0a 0%, #050505 100%);
+}
+
+.card-servicio:hover {
+  transform: translateY(-8px);
+  border-color: rgba(186, 255, 41, 0.4); /* Borde verde neón sutil */
+  box-shadow: 0 10px 30px rgba(186, 255, 41, 0.05);
+}
+
+.card-servicio h3 {
+  color: var(--texto-principal);
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+/* Pequeña línea decorativa debajo de los títulos */
+.card-servicio h3::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 40px;
+  height: 3px;
+  background-color: var(--acento-primario);
+  transition: width 0.4s ease;
+}
+
+.card-servicio:hover h3::after {
+  width: 80px; /* La línea crece al pasar el mouse */
+}
+
+.card-servicio p {
+  color: var(--texto-secundario);
+  line-height: 1.7;
+  font-size: 1rem;
+}
+
+/* =========================================
+   ESTILOS PÁGINA TESTIMONIOS
+   ========================================= */
+.seccion-hero-testimonios {
+  text-align: center;
+  padding: 120px 20px 60px;
+}
+
+.contenedor-testimonios {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 20px 100px;
+}
+
+.grid-testimonios {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+/* Tarjeta individual de opinión */
+.card-testimonio {
+  background: #080808;
+  border: 1px solid #1a1a1a;
+  border-radius: 16px;
+  padding: 40px 30px;
+  transition: all 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-testimonio:hover {
+  transform: translateY(-8px);
+  border-color: rgba(186, 255, 41, 0.3);
+  box-shadow: 0 10px 30px rgba(186, 255, 41, 0.05);
+}
+
+/* Estrellas neón */
+.estrellas {
+  color: var(--acento-primario);
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+}
+
+/* Texto de la reseña */
+.texto-testimonio {
+  color: var(--texto-secundario);
+  font-size: 1.05rem;
+  line-height: 1.8;
+  font-style: italic;
+  margin-bottom: 30px;
+  flex-grow: 1; /* Empuja el perfil hacia abajo para que todas las tarjetas se alineen */
+}
+
+/* Perfil del cliente (Avatar + Nombre) */
+.cliente-perfil {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  border-top: 1px solid #1a1a1a;
+  padding-top: 20px;
+}
+
+.avatar-cliente {
+  width: 50px;
+  height: 50px;
+  background-color: #111;
+  border: 1px solid var(--acento-primario);
+  color: var(--acento-primario);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.info-cliente h4 {
+  color: var(--texto-principal);
+  font-size: 1.1rem;
+  margin: 0 0 5px 0;
+  text-transform: capitalize;
+}
+
+.info-cliente span {
+  color: #666;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* =========================================
+   ESTILOS PÁGINA FORMULARIO
+   ========================================= */
+.seccion-formulario {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  padding: 120px 20px 60px;
+}
+
+.contenedor-form {
+  background: #080808;
+  border: 1px solid #1a1a1a;
+  border-radius: 20px;
+  padding: 50px 40px;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+
+.titulo-form {
+  font-size: 2.5rem;
+  color: var(--texto-principal);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.subtitulo-form {
+  color: var(--texto-secundario);
+  margin-bottom: 40px;
+  font-size: 1rem;
+}
+
+/* Campos del Formulario */
+.formulario-premium {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.grupo-input {
+  width: 100%;
+}
+
+.formulario-premium input,
+.formulario-premium textarea {
+  width: 100%;
+  padding: 15px 20px;
+  background-color: #111;
+  border: 1px solid #222;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.formulario-premium textarea {
+  resize: vertical; /* Permite agrandar el cuadro solo hacia abajo */
+}
+
+/* El efecto Neón al hacer clic para escribir */
+.formulario-premium input:focus,
+.formulario-premium textarea:focus {
+  outline: none;
+  border-color: var(--acento-primario);
+  box-shadow: 0 0 15px rgba(186, 255, 41, 0.2);
+  background-color: #0a0a0a;
+}
+
+/* Modificamos tu botón animado solo para que ocupe todo el ancho aquí */
+.boton-enviar {
+  width: 100%;
+  margin-top: 10px;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+}
